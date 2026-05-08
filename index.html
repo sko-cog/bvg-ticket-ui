@@ -1,0 +1,318 @@
+```html
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BVG Smart Ticket Advisor</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.18), transparent 20%),
+        linear-gradient(135deg, #f5d000 0%, #ffd900 40%, #f2c200 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      color: #111111;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+    }
+
+    .glow {
+      position: absolute;
+      inset: -30px;
+      background: rgba(255,255,255,0.22);
+      filter: blur(40px);
+      z-index: 0;
+      border-radius: 40px;
+    }
+
+    .ticket-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow:
+        0 24px 60px rgba(0,0,0,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.5);
+    }
+
+    .top-banner {
+      background: #111111;
+      padding: 26px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-banner::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      top: -90px;
+      right: -60px;
+    }
+
+    .bvg-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #f5d000;
+      color: #111111;
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: 1.5px;
+      padding: 12px 20px;
+      border-radius: 16px;
+      margin-bottom: 22px;
+      box-shadow: 0 8px 24px rgba(245,208,0,0.35);
+    }
+
+    .headline {
+      color: white;
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .subheadline {
+      color: rgba(255,255,255,0.78);
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .content {
+      padding: 28px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .info-box {
+      background: rgba(245,208,0,0.18);
+      border: 1px solid rgba(245,208,0,0.35);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #666;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .value {
+      font-size: 22px;
+      font-weight: 800;
+      color: #111111;
+      line-height: 1.2;
+    }
+
+    .route-card {
+      background: #111111;
+      color: white;
+      border-radius: 24px;
+      padding: 22px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .route-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+      bottom: -80px;
+      right: -40px;
+    }
+
+    .route-title {
+      color: rgba(255,255,255,0.65);
+      font-size: 13px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .route {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .recommendation {
+      background: rgba(17,17,17,0.04);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 28px;
+    }
+
+    .recommendation-title {
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .recommendation-text {
+      color: #555;
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .buy-button {
+      width: 100%;
+      border: none;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #111111 0%, #2c2c2c 100%);
+      color: #f5d000;
+      padding: 20px;
+      font-size: 18px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+    }
+
+    .buy-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+    }
+
+    .footer {
+      margin-top: 18px;
+      text-align: center;
+      color: #666;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 480px) {
+      .headline {
+        font-size: 26px;
+      }
+
+      .value {
+        font-size: 20px;
+      }
+
+      .route {
+        font-size: 19px;
+      }
+
+      .content {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="app-shell">
+    <div class="glow"></div>
+
+    <div class="ticket-card">
+
+      <div class="top-banner">
+
+        <div class="bvg-logo">
+          BVG
+        </div>
+
+        <div class="headline">
+          Smart Ticket Advisor
+        </div>
+
+        <div class="subheadline">
+          Your recommended BVG ticket is ready.
+          Fast, secure and optimized for your journey.
+        </div>
+
+      </div>
+
+      <div class="content">
+
+        <div class="info-grid">
+
+          <div class="info-box">
+            <div class="label">Ticket Type</div>
+            <div class="value">ABC Einzelfahrt</div>
+          </div>
+
+          <div class="info-box">
+            <div class="label">Price</div>
+            <div class="value">5.00 EUR</div>
+          </div>
+
+        </div>
+
+        <div class="route-card">
+          <div class="route-title">Route</div>
+          <div class="route">
+            BER Airport →<br>
+            Alexanderplatz
+          </div>
+        </div>
+
+        <div class="recommendation">
+          <div class="recommendation-title">
+            Why this ticket?
+          </div>
+
+          <div class="recommendation-text">
+            Your journey includes BER Airport, which is located in zone C.
+            Therefore, an ABC ticket is required for valid travel.
+          </div>
+        </div>
+
+        <button class="buy-button">
+          Ticket Kaufen
+        </button>
+
+        <div class="footer">
+          Secure BVG travel experience powered by Cognigy AI
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
+```
