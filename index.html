@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,134 +19,138 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.22), transparent 25%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,0.18), transparent 20%),
-        linear-gradient(135deg, #f5d000 0%, #ffd900 40%, #f2c200 100%);
       min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 24px;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(255,255,255,0.14), transparent 20%),
+        linear-gradient(135deg, #f7d600 0%, #ffd900 45%, #f0c300 100%);
       color: #111111;
     }
 
-    .app-shell {
+    .background-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      filter: blur(60px);
+      top: -120px;
+      left: -120px;
+      pointer-events: none;
+    }
+
+    .ticket-shell {
       width: 100%;
       max-width: 460px;
       position: relative;
-    }
-
-    .glow {
-      position: absolute;
-      inset: -30px;
-      background: rgba(255,255,255,0.22);
-      filter: blur(40px);
-      z-index: 0;
-      border-radius: 40px;
+      z-index: 2;
     }
 
     .ticket-card {
-      position: relative;
-      z-index: 2;
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,255,255,0.5);
       border-radius: 34px;
       overflow: hidden;
+      background: rgba(255,255,255,0.90);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.55);
       box-shadow:
-        0 24px 60px rgba(0,0,0,0.20),
-        inset 0 1px 0 rgba(255,255,255,0.5);
+        0 28px 60px rgba(0,0,0,0.20),
+        inset 0 1px 0 rgba(255,255,255,0.6);
     }
 
-    .top-banner {
-      background: #111111;
-      padding: 26px 28px;
+    .hero {
       position: relative;
+      background: linear-gradient(135deg, #111111 0%, #1d1d1d 100%);
+      padding: 28px;
       overflow: hidden;
     }
 
-    .top-banner::after {
+    .hero::after {
       content: "";
       position: absolute;
-      width: 180px;
-      height: 180px;
-      background: rgba(255,255,255,0.06);
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
-      top: -90px;
-      right: -60px;
+      background: rgba(255,255,255,0.05);
+      top: -120px;
+      right: -80px;
     }
 
-    .bvg-logo {
-      min-width: 82px;
+    .logo-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: #f5d000;
+      gap: 10px;
+      background: #f7d600;
       color: #111111;
       font-weight: 800;
-      font-size: 18px;
-      letter-spacing: 1.5px;
-      padding: 12px 20px;
       border-radius: 16px;
-      margin-bottom: 22px;
-      box-shadow: 0 8px 24px rgba(245,208,0,0.35);
+      padding: 12px 18px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(247,214,0,0.32);
+      letter-spacing: 1px;
+      font-size: 16px;
     }
 
-    .headline {
+    .hero-title {
       color: white;
-      font-size: 30px;
+      font-size: 34px;
       font-weight: 800;
       line-height: 1.1;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    .subheadline {
-      color: rgba(255,255,255,0.78);
-      line-height: 1.5;
+    .hero-text {
+      color: rgba(255,255,255,0.76);
+      line-height: 1.6;
       font-size: 15px;
+      max-width: 90%;
     }
 
     .content {
       padding: 28px;
     }
 
-    .info-grid {
+    .top-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 24px;
     }
 
-    .info-box {
-      background: rgba(245,208,0,0.18);
-      border: 1px solid rgba(245,208,0,0.35);
-      border-radius: 20px;
+    .stat-box {
+      background: rgba(247,214,0,0.18);
+      border: 1px solid rgba(247,214,0,0.32);
+      border-radius: 22px;
       padding: 18px;
     }
 
     .label {
       font-size: 12px;
-      font-weight: 600;
-      color: #666;
-      letter-spacing: 0.5px;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #666;
       margin-bottom: 8px;
     }
 
     .value {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
-      color: #111111;
       line-height: 1.2;
+      color: #111111;
     }
 
     .route-card {
-      background: #111111;
+      background: linear-gradient(135deg, #111111 0%, #1f1f1f 100%);
+      border-radius: 26px;
+      padding: 24px;
       color: white;
-      border-radius: 24px;
-      padding: 22px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       position: relative;
       overflow: hidden;
     }
@@ -154,44 +158,46 @@
     .route-card::after {
       content: "";
       position: absolute;
-      width: 160px;
-      height: 160px;
-      background: rgba(255,255,255,0.04);
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      bottom: -80px;
-      right: -40px;
+      background: rgba(255,255,255,0.04);
+      bottom: -90px;
+      right: -50px;
     }
 
     .route-title {
-      color: rgba(255,255,255,0.65);
-      font-size: 13px;
+      color: rgba(255,255,255,0.62);
       text-transform: uppercase;
-      margin-bottom: 10px;
+      font-size: 12px;
       letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      font-weight: 700;
     }
 
     .route {
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.5;
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.4;
     }
 
-    .recommendation {
+    .reason-box {
       background: rgba(17,17,17,0.04);
-      border-radius: 20px;
-      padding: 20px;
+      border-radius: 22px;
+      padding: 22px;
       margin-bottom: 28px;
     }
 
-    .recommendation-title {
-      font-weight: 700;
-      margin-bottom: 10px;
-      font-size: 16px;
+    .reason-title {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #111111;
     }
 
-    .recommendation-text {
+    .reason-text {
+      line-height: 1.7;
       color: #555;
-      line-height: 1.6;
       font-size: 15px;
     }
 
@@ -199,40 +205,40 @@
       width: 100%;
       border: none;
       border-radius: 22px;
-      background: linear-gradient(135deg, #111111 0%, #2c2c2c 100%);
-      color: #f5d000;
+      background: linear-gradient(135deg, #111111 0%, #2a2a2a 100%);
+      color: #f7d600;
       padding: 20px;
       font-size: 18px;
       font-weight: 800;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.24);
     }
 
     .buy-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.30);
     }
 
     .footer {
       margin-top: 18px;
       text-align: center;
-      color: #666;
+      color: #777;
       font-size: 12px;
       line-height: 1.6;
     }
 
     @media (max-width: 480px) {
-      .headline {
-        font-size: 26px;
-      }
-
-      .value {
-        font-size: 20px;
+      .hero-title {
+        font-size: 30px;
       }
 
       .route {
-        font-size: 19px;
+        font-size: 22px;
+      }
+
+      .value {
+        font-size: 21px;
       }
 
       .content {
@@ -245,23 +251,28 @@
 
 <body>
 
-  <div class="app-shell">
-    <div class="glow"></div>
+  <div class="background-glow"></div>
+
+  <div class="ticket-shell">
 
 ```
 <div class="ticket-card">
 
-  <div class="top-banner">
+  <div class="hero">
 
-    <div class="bvg-logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/BVG_logo.svg" alt="BVG Logo" style="height:28px; width:auto; display:block;">
+    <div class="logo-pill">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/8/83/BVG_logo.svg"
+        alt="BVG Logo"
+        style="height:34px; width:auto; display:block; filter: brightness(0) saturate(100%);"
+      />
     </div>
 
-    <div class="headline">
+    <div class="hero-title">
       Smart Ticket Advisor
     </div>
 
-    <div class="subheadline">
+    <div class="hero-text" id="heroText">
       Your recommended BVG ticket is ready.
       Fast, secure and optimized for your journey.
     </div>
@@ -270,43 +281,51 @@
 
   <div class="content">
 
-    <div class="info-grid">
+    <div class="top-grid">
 
-      <div class="info-box">
-        <div class="label">Ticket Type</div>
-        <div class="value">{{ticket_type}}</div>
+      <div class="stat-box">
+        <div class="label" id="ticketTypeLabel">Ticket Type</div>
+        <div class="value" id="ticketType">ABC Einzelfahrt</div>
       </div>
 
-      <div class="info-box">
-        <div class="label">Price</div>
-        <div class="value">{{price}}</div>
+      <div class="stat-box">
+        <div class="label" id="priceLabel">Price</div>
+        <div class="value" id="price">5.00 EUR</div>
       </div>
 
     </div>
 
     <div class="route-card">
-      <div class="route-title">Route</div>
-      <div class="route">
-        {{origin}} →<br>
-        {{destination}}
+
+      <div class="route-title" id="routeLabel">
+        Route
       </div>
+
+      <div class="route">
+        <span id="origin">BER Airport</span>
+        →<br>
+        <span id="destination">Alexanderplatz</span>
+      </div>
+
     </div>
 
-    <div class="recommendation">
-      <div class="recommendation-title">
+    <div class="reason-box">
+
+      <div class="reason-title" id="whyLabel">
         Why this ticket?
       </div>
 
-      <div class="recommendation-text">
-        {{reason}}
+      <div class="reason-text" id="reason">
+        Your journey includes BER Airport, which is located in zone C. Therefore, an ABC ticket is required for valid travel.
       </div>
+
     </div>
 
-    <button class="buy-button">
+    <button class="buy-button" id="buyButton">
       Ticket Kaufen
     </button>
 
-    <div class="footer">
+    <div class="footer" id="footerText">
       Secure BVG travel experience powered by Cognigy AI
     </div>
 
@@ -316,6 +335,62 @@
 ```
 
   </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const lang = params.get('lang') || 'en';
+
+    const translations = {
+      en: {
+        heroText: 'Your recommended BVG ticket is ready. Fast, secure and optimized for your journey.',
+        ticketType: 'Ticket Type',
+        price: 'Price',
+        route: 'Route',
+        why: 'Why this ticket?',
+        button: 'Buy Ticket',
+        footer: 'Secure BVG travel experience powered by Cognigy AI'
+      },
+      de: {
+        heroText: 'Ihr empfohlenes BVG Ticket ist bereit. Schnell, sicher und für Ihre Reise optimiert.',
+        ticketType: 'Tickettyp',
+        price: 'Preis',
+        route: 'Route',
+        why: 'Warum dieses Ticket?',
+        button: 'Ticket Kaufen',
+        footer: 'Sichere BVG Reiseerfahrung mit Cognigy AI'
+      }
+    };
+
+    const t = translations[lang] || translations.en;
+
+    const ticketType = params.get('ticket') || 'ABC Einzelfahrt';
+    const price = params.get('price') || '5.00 EUR';
+    const origin = params.get('origin') || 'BER Airport';
+    const destination = params.get('destination') || 'Alexanderplatz';
+    const reason = params.get('reason') || 'Your journey includes BER Airport, which is located in zone C. Therefore, an ABC ticket is required for valid travel.';
+    const purchaseLink = params.get('buy') || 'https://www.bvg.de';
+
+    document.documentElement.lang = lang;
+
+    document.getElementById('heroText').innerText = t.heroText;
+    document.getElementById('ticketTypeLabel').innerText = t.ticketType;
+    document.getElementById('priceLabel').innerText = t.price;
+    document.getElementById('routeLabel').innerText = t.route;
+    document.getElementById('whyLabel').innerText = t.why;
+    document.getElementById('buyButton').innerText = t.button;
+    document.getElementById('footerText').innerText = t.footer;
+
+    document.getElementById('ticketType').innerText = ticketType;
+    document.getElementById('price').innerText = price;
+    document.getElementById('origin').innerText = origin;
+    document.getElementById('destination').innerText = destination;
+    document.getElementById('reason').innerText = reason;
+
+    document.getElementById('buyButton').addEventListener('click', () => {
+      window.open(purchaseLink, '_blank');
+    });
+  </script>
 
 </body>
 </html>
